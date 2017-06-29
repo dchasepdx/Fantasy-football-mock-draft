@@ -6,4 +6,27 @@ body {
 .table {
   overflow-y: scroll;
   height: 400px;
+  width: 100%
+}
+
+table {
+    font-family: arial, sans-serif;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    width: 150px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tbody > tr:hover {
+  background-color: #7CCBFF
 }
