@@ -30,12 +30,10 @@ class MyTable extends Component {
   }
 
   filterFields(e, field) {
-    const {displayName, position, team, players} = this.state;
     const filterData = e.target.value.toString().toLowerCase();
-    const list = (displayName || position || team) ? players : this.data;
 
 
-    const filteredList = list.filter(player => {
+    const filteredList = this.data.filter(player => {
       return player[field].toString().toLowerCase().indexOf(filterData) > -1;
     });
     this.setState({
@@ -79,25 +77,27 @@ class MyTable extends Component {
           </thead>
           <tbody>
             {players.map(player => {
-              if (parseInt(player.active, 10)) {
-                return (
-                <tr key={player.playerId}>
-                  <td>
-                    {player.displayName}
-                  </td>
-                  <td>
-                    {player.team}
-                  </td>
-                  <td>
-                    {player.position}
-                  </td>
-                  <td>
-                    {byes[player.team]}
-                  </td>
-                </tr>
-                );
+              if (parseInt(!player.active, 10)) {
+                return null;
               }
-            })}
+              return (
+              <tr key={player.playerId}>
+                <td>
+                  {player.displayName}
+                </td>
+                <td>
+                  {player.team}
+                </td>
+                <td>
+                  {player.position}
+                </td>
+                <td>
+                  {byes[player.team]}
+                </td>
+              </tr>
+              );
+            }
+            )}
           </tbody>
         </table>
       </div>
