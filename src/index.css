@@ -1,3 +1,9 @@
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +12,15 @@ body {
 .table {
   overflow-y: scroll;
   height: 400px;
-  width: 100%
+  margin-bottom: 40px;
+}
+
+.watchlist {
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  overflow-y: scroll;
+
 }
 
 table {
@@ -15,6 +29,8 @@ table {
     border-collapse: collapse;
     width: 80%;
     margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
 }
 
 td, th {
@@ -29,4 +45,35 @@ tr:nth-child(even) {
 
 tbody > tr:hover {
   background-color: #7CCBFF
+}
+
+.grid {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.header {
+  margin-top: 1%;
+}
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+[class*='col-'] {
+  float: left;
+}
+
+[class*='col-'] {
+  padding-right: 20px;
+}
+
+[class*='col-']:last-of-type {
+  padding-right: 0;
+}
+
+.col-1-2 {
+  width: 50%;
 }
