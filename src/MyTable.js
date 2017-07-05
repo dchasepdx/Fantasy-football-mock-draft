@@ -4,7 +4,7 @@ import data from './data.json';
 class MyTable extends Component {
   constructor(props) {
     super(props);
-    this.data = data.Players;
+    this.data = this.props.data.Players;
     this.state = {
       players: this.data,
       byes: {
@@ -22,11 +22,6 @@ class MyTable extends Component {
       },
     };
     this.filterFields = this.filterFields.bind(this);
-    this.resetFilters = this.resetFilters.bind(this);
-  }
-
-  resetFilters() {
-    this.setState({players: this.data});
   }
 
   filterFields(e, field) {
@@ -37,8 +32,7 @@ class MyTable extends Component {
       return player[field].toString().toLowerCase().indexOf(filterData) > -1;
     });
     this.setState({
-      players: filteredList,
-      [field]: filterData
+      players: filteredList
     });
   }
 
@@ -77,11 +71,16 @@ class MyTable extends Component {
           </thead>
           <tbody>
             {players.map(player => {
-              if (parseInt(!player.active, 10)) {
+              if (!parseInt(player.active, 10)) {
                 return null;
               }
               return (
-              <tr key={player.playerId}>
+              <tr 
+                key={player.playerId}
+                onClick={() => {
+                  this.props.addToWatchlist(player);
+                }}
+              >
                 <td>
                   {player.displayName}
                 </td>
